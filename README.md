@@ -1,6 +1,5 @@
 # Go-Guess
----
-A little project te help me learn go & docker.
+A little guessing game built as an exercise  to help me learn go & docker.
 
 #### If you have docker
 
