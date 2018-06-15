@@ -23,6 +23,8 @@ ifneq ($(findstring -dirtyPOTATO,$(VERSION)POTATO),)
 	@echo "Error: Can't deploy dirty version"
 	@echo "*********************************"
 	@exit 1
+else
+	@echo "Ready for deployment"
 endif
 
 build:
