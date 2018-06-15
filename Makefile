@@ -37,7 +37,7 @@ version: build
 docker-build:
 	docker build -t $(DOCKER_TAG_VERSION) -t $(DOCKER_TAG_LATEST) -t $(OUT) .
 
-docker-deploy: check-deploy build-docker
+docker-deploy: check-deploy docker-build
 	docker push $(DOCKER_TAG_LATEST)
 	docker push $(DOCKER_TAG_VERSION)
 
