@@ -19,9 +19,9 @@ endif
 
 check-deploy:
 ifneq ($(findstring -dirtyPOTATO,$(VERSION)POTATO),)
-	@echo "*********************************"
-	@echo "Error: Can't deploy dirty version"
-	@echo "*********************************"
+	@echo "***************************************************"
+	@echo "Error: Can't deploy with a dirty working directory."
+	@echo "***************************************************"
 	@exit 1
 else
 	@echo "Ready for deployment"
