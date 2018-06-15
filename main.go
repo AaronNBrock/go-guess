@@ -42,8 +42,7 @@ func main() {
 			input = strings.TrimRight(input, "\r\n")
 			guess, err = strconv.Atoi(input)
 			if err != nil {
-				//fmt.Printf("\"%s\" isn't a number.\n", input)
-				fmt.Println(len(input))
+				fmt.Printf("\"%s\" isn't a number.\n", input)
 			}
 		}
 		if guess > randno {
