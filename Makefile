@@ -1,6 +1,6 @@
 OUT := go-guess
 PKG := github.com/AaronNBrock/go-guess
-VERSION := $(shell git describe --always --long --dirty)
+VERSION := $(shell git describe --always --dirty)
 DOCKER_TAG := aaronnbrock/$(OUT)
 # DOCKER_TAG_LATEST := $(DOCKER_TAG):latest
 DOCKER_TAG_VERSION := $(DOCKER_TAG):$(VERSION:v%=%) # Version with out the `v` at the beginning
