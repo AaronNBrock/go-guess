@@ -13,10 +13,17 @@ import (
 	"strings"
 )
 
-func main() {
+var version string = "undefined"
 
+func main() {
+	display_version := flag.Bool("version", false, "Display version")
 	max := flag.Int("max", 10, "The maximum possible random value") 
 	flag.Parse()
+
+	if *display_version {
+		fmt.Printf("Version: %s\n", version)
+		return
+	}
 
 	reader := bufio.NewReader(os.Stdin)
 	s1 := rand.NewSource(time.Now().UnixNano())
