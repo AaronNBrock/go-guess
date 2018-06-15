@@ -15,10 +15,30 @@ import (
 
 var version string = "undefined"
 
+func minimum(x, y int) (int) {
+	if x < y {
+		return x
+	} else {
+		return y
+	}
+}
+
+func maximum(x, y int) (int) {
+	if x > y {
+		return x
+	} else {
+		return y
+	}
+}
+
 func main() {
 	display_version := flag.Bool("version", false, "Display version")
-	max := flag.Int("max", 10, "The maximum possible random value") 
+
+	min := flag.Int("min", 1, "The minimum possible random value")
+	max := flag.Int("max", 10, "The maximum possible random value")
 	flag.Parse()
+
+	*min, *max = minimum(*min, *max), maximum(*min, *max)
 
 	if *display_version {
 		fmt.Printf("Version: %s\n", version)
@@ -29,12 +49,12 @@ func main() {
 	s1 := rand.NewSource(time.Now().UnixNano())
 	r1 := rand.New(s1)
 	
-	randno := r1.Intn(*max) + 1
+	randno := r1.Intn(*max + 1 - *min) + *min
 
 	var valid_guess bool
-	var guess int
+	var guess int = *min - 1 // in case the random number is 0
 
-	fmt.Printf("Go on, guess a number between 1 and %d.\n", *max)
+	fmt.Printf("Go on, guess a number between %d and %d.\n", *min, *max)
 	for randno != guess {
 		valid_guess = false
 		for !valid_guess {
