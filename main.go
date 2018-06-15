@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"strconv"
 	"flag"
+	"strings"
 )
 
 func main() {
@@ -38,10 +39,11 @@ func main() {
 				log.Fatal(err)
 			}
 			// Remove newline
-			input = input[:len(input) - 1]
+			input = strings.TrimRight(input, "\r\n")
 			guess, err = strconv.Atoi(input)
 			if err != nil {
-				fmt.Printf("\"%s\" isn't a number.\n", input)
+				//fmt.Printf("\"%s\" isn't a number.\n", input)
+				fmt.Println(len(input))
 			}
 		}
 		if guess > randno {
@@ -49,7 +51,6 @@ func main() {
 		} else if guess < randno {
 			fmt.Println("The number is higher than that.")
 		}
-			
 	}
 	fmt.Printf("\nCorrect!  The number is %d!\n", randno)
 
