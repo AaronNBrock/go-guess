@@ -31,12 +31,13 @@ func main() {
 	
 	randno := r1.Intn(*max) + 1
 
+	var valid_guess bool
 	var guess int
 
 	fmt.Printf("Go on, guess a number between 1 and %d.\n", *max)
 	for randno != guess {
-		guess = -1
-		for guess <= 0 {
+		valid_guess = false
+		for !valid_guess {
 			fmt.Print("Enter Number: ")
 			input, err := reader.ReadString('\n')
 			if err != nil { 
@@ -50,6 +51,8 @@ func main() {
 			guess, err = strconv.Atoi(input)
 			if err != nil {
 				fmt.Printf("\"%s\" isn't a number.\n", input)
+			} else {
+				valid_guess = true
 			}
 		}
 		if guess > randno {
