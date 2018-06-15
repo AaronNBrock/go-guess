@@ -1,7 +1,7 @@
 FROM golang as builder
 WORKDIR /go/src/github.com/AaronNBrock/go-guess/
-COPY main.go .
-RUN go build .
+COPY . .
+RUN make build .
 
 FROM alpine:latest
 WORKDIR /app/
