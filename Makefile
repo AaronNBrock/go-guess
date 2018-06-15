@@ -45,3 +45,6 @@ docker-deploy: check-deploy docker-build
 
 docker-run: docker-build
 	docker run -i $(OUT)
+
+docker-version: docker-build
+	docker run -i $(OUT) -version
