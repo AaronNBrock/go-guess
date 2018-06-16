@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Make docker-deploy') {
       steps {
-        sh 'make docker-deploy'
+        echo 'Hello, World!'
       }
     }
   }
