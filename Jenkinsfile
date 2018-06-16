@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('Make docker-deploy') {
+    stage('Print Hello, World') {
       steps {
-        echo 'Hello, World!'
+        echo 'Hello, World'
       }
     }
   }
