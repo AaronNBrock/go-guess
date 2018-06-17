@@ -36,7 +36,7 @@ run: build
 version: build
 	./$(OUT) -version
 
-docker-build:
+docker-build: build
 	docker build -t $(DOCKER_TAG_VERSION) -t $(DOCKER_TAG_LATEST) -t $(OUT) .
 
 docker-deploy: check-deploy docker-build

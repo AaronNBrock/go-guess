@@ -1,15 +1,13 @@
 pipeline {
   agent {
-    docker {
-      image 'golang'
+    dockerfile {
+      filename 'build.dockerfile'
     }
-
   }
   stages {
-    stage('Make docker-deploy') {
+    stage('Say Hello') {
       steps {
         echo 'Hello, World'
-        sh 'make docker-deploy'
       }
     }
   }
