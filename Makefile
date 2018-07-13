@@ -16,6 +16,25 @@ DOCKER_TAG_LATEST := $(DOCKER_TAG):edge
 endif
 
 
+docker-login:
+# Check if auth exists in docker config
+ifneq ($(findstring auth,$(shell cat ~/.docker/config.json | jq '.auths["https://index.docker.io/v1/"]')),)
+	@echo "Already Logged in!"
+else
+	@echo "Attepmting to log in..."
+# Check if username exists
+ifndef DOCKER_USERNAME
+	@echo "DOCKER_USERNAME undefined" 
+	@exit 1
+endif
+# Check if password exists
+ifndef DOCKER_PASSWORD
+	@echo "DOCKER_PASSWORD undefined" 
+	@exit 1
+endif
+# Login to docker
+	@docker login --username $(DOCKER_USERNAME) --password $(DOCKER_PASSWORD)
+endif
 
 check-deploy:
 ifneq ($(findstring -dirtyPOTATO,$(VERSION)POTATO),)
@@ -39,7 +58,7 @@ version: build
 docker-build: build
 	docker build -t $(DOCKER_TAG_VERSION) -t $(DOCKER_TAG_LATEST) -t $(OUT) .
 
-docker-deploy: check-deploy docker-build
+docker-deploy: check-deploy docker-login docker-build
 	docker push $(DOCKER_TAG_LATEST)
 	docker push $(DOCKER_TAG_VERSION)
 
